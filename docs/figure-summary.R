@@ -41,6 +41,9 @@ filtered_data <- filtered_data %>%
 # Check the structure of the filtered data
 str(filtered_data)
 
+
+# Frequency of interfrontal/Wormian bone ----------------------------------
+
 filtered_data$wormian_bone2 <- relevel(filtered_data$wormian_bone,"present")
 # Create the stacked bar plot
 (plot <- ggplot(filtered_data, aes(x = Genotype, fill = wormian_bone2)) +
@@ -70,9 +73,6 @@ filtered_data <- filtered_data[!filtered_data$Sex =="x",]
 
 # Save the plot using the here package for the file path
 ggsave(here("Figure-1/02_sex-distribution.pdf"), plot = plot,width = 3)
-
-
-# Frequency of interfrontal/Wormian bone ----------------------------------
 
 
 # Interdigitation at P14 --------------------------------------------------

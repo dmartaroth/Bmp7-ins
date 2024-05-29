@@ -7,6 +7,7 @@
 
 # Colors
 wormianbonecols <- c( "violet","floralwhite")
+sexcols <- c("white","black")
 
 # Custom theme for barplot
 custom_theme_bar <- function() {
