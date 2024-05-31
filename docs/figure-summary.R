@@ -18,7 +18,7 @@ source(here::here("docs/packages.R"))
 source(here::here("docs/themes.R"))
 
 # Load micro-computed tomography data collection spreadsheet
-file_path <- here("src/BMP7-CT-scans.xlsx")
+file_path <- here("raw-data/BMP7-CT-scans.xlsx")
 
 # Read the Excel file
 data <- read_excel(file_path, sheet = "Sheet1")
@@ -42,7 +42,7 @@ filtered_data <- filtered_data %>%
 str(filtered_data)
 
 
-# Frequency of interfrontal/Wormian bone ----------------------------------
+## Frequency of interfrontal/Wormian bone ----------------------------------
 
 filtered_data$wormian_bone2 <- relevel(filtered_data$wormian_bone,"present")
 # Create the stacked bar plot
@@ -60,7 +60,7 @@ filtered_data$wormian_bone2 <- relevel(filtered_data$wormian_bone,"present")
 ggsave(here("Figure-1/01_wormian_bone_frequency_plot.pdf"), plot = plot,width = 5)
 
 
-# Sex distribution --------------------------------------------------------
+## Sex distribution --------------------------------------------------------
 filtered_data <- filtered_data[!filtered_data$Sex =="x",]
 (plot <- ggplot(filtered_data, aes(x = Age, fill = Sex)) +
    geom_bar(position = "fill", aes(y = ..count../sum(..count..)),size = 0.5, color = "black") +
@@ -75,6 +75,98 @@ filtered_data <- filtered_data[!filtered_data$Sex =="x",]
 ggsave(here("Figure-1/02_sex-distribution.pdf"), plot = plot,width = 3)
 
 
-# Interdigitation at P14 --------------------------------------------------
+## Interdigitation at P14 --------------------------------------------------
+
+
+
+
+# FIGURE 2 ----------------------------------------------------------------
+
+## Internasal suture/nasal septum deviation --------------------------------
+
+
+
+
+
+
+# FIGURE 3 ----------------------------------------------------------------
+
+
+## Osteoblast asymmetry (P14) ----------------------------------------------------
+
+
+## Osteoclast infiltration (P14) -------------------------------------------------
+
+## Osteogenesis (P7) -------------------------------------------------------
+
+
+
+
+
+
+# FIGURE 4 ----------------------------------------------------------------
+
+# Visium spatial transcriptomic definition of endo vs ectocranial domains
+
+## Set up Visium objects ---------------------------------------------------
+
+
+### Runx2, Cd200, Col2a1 expression -----------------------------------------
+
+## Segmentation of endo vs ecto gems ---------------------------------------
+
+### Osteogenesis violin plots -----------------------------------------------
+
+### Heatmap of marker genes (endo vs ecto) ----------------------------------
+
+### Visualization of selected genes (featplot and violin plots) -------------
+
+
+## Left vs right segmentation ----------------------------------------------
+
+
+
+# FIGURE 6 ----------------------------------------------------------------
+
+
+## Load snRNA-seq data -----------------------------------------------------
+
+## UMAP --------------------------------------------------------------------
+
+
+## Marker gene dotplot -----------------------------------------------------
+
+## Nebulosa density plot ---------------------------------------------------
+
+## Bmp7+ cell subset -------------------------------------------------------
+
+### Heatmap Bmp7+ cells -----------------------------------------------------
+
+
+### ReviGO Molecular Function Bmp7+ cells -----------------------------------------------
+
+
+
+
+# FIGURE 7 ----------------------------------------------------------------
+
+
+## Bmp7 RNAscope quantification P0 -----------------------------------------
+
+
+## Osteocyte maturation quantification P0 ----------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
