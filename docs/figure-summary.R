@@ -109,11 +109,13 @@ ggsave(here("Figure-1/02_sex-distribution.pdf"), plot = plot,width = 3)
 # Visium spatial transcriptomic definition of endo vs ectocranial domains
 
 ## Set up Visium objects ---------------------------------------------------
+# Source import, processing, and segmentation script
+source(here::here("docs/FIG4_01_import-visium-process.R"))
 
 
-### Runx2, Cd200, Col2a1 expression -----------------------------------------
+### Visualize Runx2, Cd200, Col2a1 expression -----------------------------------------
 
-## Segmentation of endo vs ecto gems ---------------------------------------
+## Visualize segmentation of endo vs ecto gems ---------------------------------------
 
 ### Osteogenesis violin plots -----------------------------------------------
 
