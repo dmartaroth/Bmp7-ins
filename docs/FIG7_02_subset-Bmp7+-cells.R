@@ -50,3 +50,5 @@ genes_to_plot <- c("Tpm1","Parp8","Fbxl7","Bicc1","mt-Nd4","Rbms3","mt-Co2","mt-
 
 DoHeatmap(pos_cells,slot = "data",angle=0,size=1.5,group.bar.height = 0,hjust=0.5,features=genes_to_plot)+scale_fill_gradientn(colors=c("dodgerblue","oldlace","mistyrose2","tomato2","red2"),na.value = "white")+theme(axis.text.y = element_text(face = "italic"),text = element_text(size=7),legend.position = "bottom")
           
+# Add Princeton GO term scatterplot for top 30 genes (only 25 returned)
+# Consider removing panels E and F from Figure 7 (not very informative)
