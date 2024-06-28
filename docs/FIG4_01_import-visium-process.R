@@ -192,7 +192,7 @@ ggsave(here("Figure-4/04a_visium_WT1_ecto1.png"), plot = plot,width = 5)
 ## WT1 ectocranial region 2 ------------------------------------------------
 WT1ectoR2Par<-subset(WT1, subset = wt1_imagerow>162 & wt1_imagerow<190&
                        wt1_imagecol>430&wt1_imagecol<485&
-                       (Col2a1<90&Col1a1>750))
+                       (Col2a1<90&Col1a1>700))
 # ISSUE MUST BE SOLVED BEFORE CODE CAN BE RUN
 plot <-
   SpatialFeaturePlot(
