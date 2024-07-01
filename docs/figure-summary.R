@@ -705,6 +705,89 @@ DoHeatmap(
 
 
 ## Bmp7 RNAscope quantification P0 -----------------------------------------
+# Load necessary libraries
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(here)
+library(scales)  # For color palette
+library(ggpubr)  # For statistical annotation
+library(ggfun)
+
+# Set file path for the new spreadsheet
+file_path <- here("raw-data/P0_Bmp7_symmetry.xlsx")
+
+# Read the Excel file
+data <- read_excel(file_path, sheet = "Sheet1") %>%
+  select(ID, bmp7ratio)
+
+# Convert ID to factor
+data <- data %>%
+  mutate(ID = factor(ID))
+
+# Filter out rows where bmp7ratio is NA
+data <- data %>%
+  filter(!is.na(bmp7ratio))
+
+# Perform Wilcoxon signed-rank test
+wilcox_test <- wilcox.test(data$bmp7ratio, mu = 1, alternative = "two.sided")
+
+# Create color palette for IDs (shades of blue)
+blue_palette <- scales::seq_gradient_pal("powderblue", "darkblue")(seq(0, 1, length.out = length(unique(data$ID))))
+color_mapping <- setNames(blue_palette, unique(data$ID))
+
+# Create strip plot for Bmp7 ratio
+bmp7_ratio_strip_plot <- ggplot(data, aes(x = ID, y = bmp7ratio, color = ID)) +
+  geom_jitter(width = 0.1, size = 3, alpha = 0.7) +  # Jittered points
+  geom_hline(yintercept = 1, linetype = "dashed", color = "red") +  # Horizontal line at ratio 1
+  scale_color_manual(values = color_mapping) +  # Set the colors for each ID
+  scale_y_continuous(limits = c(0, 1)) +  # Set y-axis limits from 0 to 1
+  labs(
+    title = "Bmp7+ L/R symmetry",
+    x = NULL,
+    y = "Bmp7+/DAPI+ symmetry",
+    color = "ID",
+    subtitle = paste("Wilcoxon signed-rank test p-value:", signif(wilcox_test$p.value, digits = 3))
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_blank(),  # Remove x-axis title
+    axis.text.x = element_blank(),   # Remove x-axis text
+    axis.ticks.x = element_blank(),  # Remove x-axis ticks
+    plot.title = element_text(size = 8, face = "bold"),
+    axis.text.y = element_text(size = 8),
+    axis.title.y = element_text(size = 8, face = "bold"),
+    plot.subtitle = element_text(size = 8, face = "italic"),  # Subtitle size
+    panel.grid = element_blank(),
+    plot.background = element_rect(colour = "white"),
+    text = element_text(size = 8),
+    legend.background = element_blank(),
+    legend.box.background = element_roundrect(colour = "black")
+  )
+
+# Print the strip plot
+print(bmp7_ratio_strip_plot)
+
+# Save the strip plot as a PDF file
+ggsave(
+  here("Figure-7/01_Bmp7_symmetry.pdf"),
+  plot = bmp7_ratio_strip_plot,
+  width = 3,
+  height = 4
+)
+
+# Save the strip plot as a PNG file
+ggsave(
+  here("Figure-7/01_Bmp7_symmetry.png"),
+  plot = bmp7_ratio_strip_plot,
+  width = 3,
+  height = 4
+)
+
+# Print the result of the Wilcoxon signed-rank test
+print(wilcox_test)
+
+
 
 
 ## Osteocyte maturation quantification P0 ----------------------------------
