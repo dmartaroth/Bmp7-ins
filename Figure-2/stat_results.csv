@@ -1,0 +1,5 @@
+"","age","p_value","variable","test"
+"1","1-week",0.095575177919033,"suture.septum.angle","t-test"
+"2","2-week",0.00663515679000972,"suture.septum.angle","t-test"
+"3","1-week",0.338073743782897,"ins.angle","t-test"
+"4","2-week",0.0156009576224567,"ins.angle","t-test"
